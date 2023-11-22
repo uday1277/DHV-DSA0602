@@ -1,0 +1,22 @@
+# Assuming you have a data frame named 'website_traffic' with columns 'Date', 'Page Views', and 'Click-through Rate'
+website_traffic <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03")),
+  PageViews = c(1500, 1600, 1400),
+  ClickThroughRate = c(2.3, 2.7, 2.0)
+)
+
+# Plotting the line chart
+plot(website_traffic$Date, website_traffic$PageViews, type = "l",
+     xlab = "Date", ylab = "Page Views", main = "Daily Page Views Over Time")
+# Assuming you want to display the top 2 days
+top_days <- website_traffic[order(website_traffic$ClickThroughRate, decreasing = TRUE), ][1:2, ]
+
+# Plotting the bar chart
+barplot(top_days$ClickThroughRate, names.arg = as.character(top_days$Date),
+        col = "lightblue", xlab = "Date", ylab = "Click-through Rate",
+        main = "Top Days with Highest Click-through Rates")
+# Creating a data frame for the table
+traffic_table <- website_traffic[, c("Date", "PageViews", "ClickThroughRate")]
+
+# Printing the table
+print(traffic_table)
