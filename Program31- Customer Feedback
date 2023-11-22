@@ -1,0 +1,19 @@
+# Customer Feedback Data
+customer_feedback <- data.frame(
+  Customer = c("Customer 1", "Customer 2", "Customer 3", "Customer 4"),
+  Rating = c(4, 3, 5, 2),
+  Feedback = c("Great service!", "Decent but could improve.", "Excellent experience!", "Not satisfied at all.")
+)
+
+# Histogram
+hist(customer_feedback$Rating, col = "skyblue", main = "Distribution of Customer Ratings",
+     xlab = "Rating", ylab = "Frequency")
+# Pie chart
+rating_counts <- table(customer_feedback$Rating)
+pie(rating_counts, labels = paste(names(rating_counts), ": ", rating_counts),
+    main = "Distribution of Customer Ratings")
+# Stacked bar chart
+barplot(t(table(customer_feedback$Rating, customer_feedback$Feedback)), col = rainbow(nrow(customer_feedback)),
+        main = "Distribution of Feedback by Customer Rating",
+        xlab = "Customer Rating", ylab = "Number of Feedback",
+        legend.text = customer_feedback$Customer)
