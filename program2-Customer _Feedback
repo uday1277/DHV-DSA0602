@@ -1,0 +1,26 @@
+# a. Histogram for Customer Ages
+customer_data <- data.frame(
+  CustomerID = c(1, 2, 3, 4, 5),
+  Age = c(25, 30, 35, 28, 40)
+)
+hist(customer_data$Age, col = "skyblue", xlab = "Age", ylab = "Frequency",
+     main = "Distribution of Customer Ages")
+
+# b. Pie chart for Customer Satisfaction Scores
+customer_satisfaction <- data.frame(
+  CustomerID = c(1, 2, 3, 4, 5),
+  SatisfactionScore = c(4, 5, 3, 4, 5)
+)
+satisfaction_counts <- table(customer_satisfaction$SatisfactionScore)
+pie(satisfaction_counts, labels = paste("Score ", names(satisfaction_counts)),
+    main = "Distribution of Customer Satisfaction Scores")
+
+# c. Stacked bar chart for Distribution of Customer Satisfaction Scores by Age Group
+merged_data <- merge(customer_data, customer_satisfaction, by = "CustomerID")
+merged_data$AgeGroup <- cut(merged_data$Age, breaks = c(20, 30, 40, 50), labels = c("Young", "Middle-aged", "Old"))
+barplot(table(merged_data$SatisfactionScore, merged_data$AgeGroup),
+        col = c("lightblue", "lightgreen", "lightpink"),
+        legend = rownames(table(merged_data$SatisfactionScore, merged_data$AgeGroup)),
+        beside = TRUE,
+        xlab = "Age Group", ylab = "Count",
+        main = "Distribution of Customer Satisfaction Scores by Age Group")
