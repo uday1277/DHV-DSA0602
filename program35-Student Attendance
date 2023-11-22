@@ -1,0 +1,47 @@
+# Sample data for Student Attendance
+student_attendance <- data.frame(
+  Student = c("Student A", "Student B", "Student C", "Student D"),
+  Class_Date = as.Date(c("2023-01-01", "2023-01-01", "2023-01-02", "2023-01-02")),
+  Attendance = c("Present", "Absent", "Present", "Present")
+)
+# Bar chart for attendance of each student
+barplot(table(student_attendance$Attendance),
+        col = c("green", "red"),
+        main = "Attendance of Each Student",
+        xlab = "Attendance",
+        ylab = "Count")
+
+
+# Assuming you've loaded the data frames correctly
+student_attendance <- read.table(text = "Student Class_Date Attendance
+StudentA 2023-01-01 Present
+StudentB 2023-01-01 Absent
+StudentC 2023-01-02 Present
+StudentD 2023-01-02 Present", header = TRUE, stringsAsFactors = FALSE)
+
+# Create recent_attendance
+recent_attendance <- table(student_attendance[!duplicated(student_attendance$Student, fromLast = TRUE), c("Student", "Attendance")])
+# Generate a stacked bar chart for the most recent attendance status
+barplot(t(as.matrix(recent_attendance[, -1])),
+        col = c("green", "red"),
+        beside = TRUE,
+        legend.text = TRUE,
+        args.legend = list(title = "Attendance", x = "topright"),
+        main = "Most Recent Attendance Status",
+        xlab = "Student",
+        ylab = "Count")
+# Scatter plot to explore the relationship between class date and attendance
+plot(as.Date(student_attendance$Class_Date), as.numeric(factor(student_attendance$Student)),
+     col = ifelse(student_attendance$Attendance == "Present", "green", "red"),
+     pch = 16,
+     main = "Relationship Between Class Date and Attendance",
+     xlab = "Class Date",
+     ylab = "Student",
+     yaxt = "n")
+
+# Add custom y-axis labels
+axis(2, at = 1:length(unique(student_attendance$Student)), labels = unique(student_attendance$Student))
+
+# Add legend
+legend("topright", legend = c("Present", "Absent"),
+       col = c("green", "red"), pch = 16, bty = "n")
