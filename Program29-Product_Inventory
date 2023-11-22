@@ -1,0 +1,21 @@
+# Product Inventory Data
+inventory_data <- data.frame(
+  Product = c("Widget A", "Widget B", "Widget C", "Widget D"),
+  Quantity = c(100, 75, 120, 50),
+  Price = c(10.00, 15.00, 8.50, 20.00)
+)
+
+# Part (a): Bar chart for product quantities
+barplot(inventory_data$Quantity, names.arg = inventory_data$Product, col = "skyblue",
+        main = "Quantity of Each Product in Inventory",
+        xlab = "Product", ylab = "Quantity")
+
+# Part (b): Stacked bar chart for product quantities within categories
+categories <- c("Category A", "Category B", "Category C", "Category D")
+product_categories <- rep(categories, each = nrow(inventory_data) / length(categories))
+barplot(t(as.matrix(inventory_data[, "Quantity"])), beside = TRUE, col = rainbow(nrow(inventory_data)),
+        main = "Quantity of Each Product Within Categories",
+        xlab = "Product", ylab = "Quantity", legend.text = categories)
+
+# Part (c): Display inventory data table
+print(inventory_data)
