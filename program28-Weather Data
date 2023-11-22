@@ -1,0 +1,32 @@
+# Install and load the required libraries
+install.packages(c("leaflet", "dplyr"))
+library(leaflet)
+library(dplyr)
+
+# Weather Data
+weather_data <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04")),
+  Temperature = c(12, 9, 15, 8),
+  Precipitation = c(0.5, 2.0, 0.0, 5.0)
+)
+
+# Part (a): Create a map chart
+leaflet(weather_data) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng = ~Temperature,
+    lat = ~Precipitation,
+    label = ~as.character(Date),
+    popup = ~as.character(Temperature),
+    color = "blue",
+    radius = 10
+  )
+
+# Part (b): Scatter plot for average temperature and precipitation
+plot(weather_data$Temperature, weather_data$Precipitation,
+     main = "Scatter Plot: Average Temperature vs. Precipitation",
+     xlab = "Temperature (°C)", ylab = "Precipitation (mm)",
+     pch = 16, col = "blue")
+
+# Part (c): Display weather data table
+print(weather_data)
