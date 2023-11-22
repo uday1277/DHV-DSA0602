@@ -1,0 +1,33 @@
+# Assuming you have a data frame named 'survey_responses' with columns 'Survey ID', 'Question 1', 'Question 2', and 'Question 3'
+survey_responses <- data.frame(
+  SurveyID = c(1, 2, 3),
+  Question1 = c("A", "B", "C"),
+  Question2 = c("B", "A", "A"),
+  Question3 = c("C", "D", "B")
+)
+
+# Counting the frequencies of each answer for Question 1
+question1_counts <- table(survey_responses$Question1)
+
+# Plotting the grouped bar chart
+barplot(question1_counts, col = "lightblue",
+        xlab = "Answer", ylab = "Count",
+        main = "Distribution of Answers for Question 1")
+# Reshaping the data for plotting
+library(tidyr)
+survey_responses_long <- gather(survey_responses, Question, Answer, -SurveyID)
+
+# Counting the frequencies of each answer for all questions
+overall_counts <- table(survey_responses_long$Answer, survey_responses_long$Question)
+
+# Plotting the stacked bar chart
+barplot(as.matrix(overall_counts), col = c("lightblue", "lightgreen", "lightpink"),
+        legend = rownames(overall_counts),
+        beside = TRUE,
+        xlab = "Question", ylab = "Count",
+        main = "Overall Distribution of Responses for All Questions")
+# Creating a data frame for the table
+response_table <- survey_responses[, c("SurveyID", "Question1", "Question2", "Question3")]
+
+# Printing the table
+print(response_table)
