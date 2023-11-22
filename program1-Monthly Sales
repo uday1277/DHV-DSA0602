@@ -1,0 +1,25 @@
+# a. Line chart for Monthly Sales
+sales_data <- data.frame(
+  Month = c("January", "February", "March", "April", "May"),
+  Sales = c(15000, 18000, 22000, 20000, 23000)
+)
+plot(sales_data$Month, sales_data$Sales, type = "l", col = "blue",
+     xlab = "Month", ylab = "Sales ($)", main = "Monthly Sales")
+
+# b. Bar chart for Top-Selling Products
+product_data <- data.frame(
+  Product = c("Product A", "Product B", "Product C", "Product D", "Product E"),
+  Sales = c(50000, 48000, 45000, 42000, 40000)
+)
+barplot(product_data$Sales, names.arg = product_data$Product, 
+        col = "green", xlab = "Product", ylab = "Sales ($)",
+        main = "Top-Selling Products")
+
+# c. Scatter plot for Advertising Budget vs. Monthly Sales
+advertising_data <- data.frame(
+  AdvertisingBudget = c(1000, 1200, 1500, 1300, 1600),
+  Sales = c(15000, 18000, 22000, 20000, 23000)
+)
+plot(advertising_data$AdvertisingBudget, advertising_data$Sales,
+     xlab = "Advertising Budget ($)", ylab = "Sales ($)",
+     main = "Relationship between Advertising Budget and Monthly Sales")
