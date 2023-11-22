@@ -1,0 +1,22 @@
+# Employee Demographics Data
+employee_demographics <- data.frame(
+  Employee = c("John", "Alice", "Bob", "Sarah"),
+  Age = c(32, 28, 35, 29),
+  Gender = c("Male", "Female", "Male", "Female"),
+  Department = c("HR", "Sales", "IT", "Finance"),
+  Salary = c(60000, 70000, 75000, 68000)
+)
+
+# Part (a): Bar Chart for Distribution of Employee Ages
+barplot(employee_demographics$Age, names.arg = employee_demographics$Employee, col = "skyblue",
+        main = "Distribution of Employee Ages",
+        xlab = "Employee", ylab = "Age")
+
+# Part (b): Pie Chart for Distribution of Employees by Gender
+gender_counts <- table(employee_demographics$Gender)
+pie(gender_counts, labels = paste(names(gender_counts), ": ", gender_counts),
+    main = "Distribution of Employees by Gender")
+
+# Part (c): Table for Demographic Information of Each Employee
+employee_demographics_table <- employee_demographics[, c("Employee", "Age", "Gender", "Department", "Salary")]
+print(employee_demographics_table)
