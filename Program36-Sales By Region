@@ -1,0 +1,30 @@
+# Sales Data
+sales_data <- data.frame(
+  Region = c("North", "North", "South", "South"),
+  Month = c("Jan", "Feb", "Jan", "Feb"),
+  Sales = c(5000, 6200, 4800, 5600)
+)
+
+# Part (a): Grouped Bar Chart
+barplot(sales_data$Sales, beside = TRUE, col = c("skyblue", "lightgreen"),
+        names.arg = paste(sales_data$Region, sales_data$Month, sep = "-"),
+        main = "Sales by Region and Month",
+        xlab = "Region-Month", ylab = "Sales (USD)",
+        legend.text = unique(sales_data$Region))
+
+# Part (b): Stacked Area Chart (Simple lines as base R does not have a direct function)
+plot(1, type = "n", xlab = "Month", ylab = "Sales (USD)",
+     main = "Overall Sales Trend", xlim = c(0.5, 2.5), ylim = c(0, max(sales_data$Sales)))
+
+colors <- c("skyblue", "lightgreen")
+for (i in unique(sales_data$Region)) {
+  lines(x = as.numeric(factor(sales_data$Month)),
+        y = sales_data$Sales * (sales_data$Region == i),
+        type = "s", col = colors[i == unique(sales_data$Region)], pch = 16)
+}
+
+legend("topright", legend = unique(sales_data$Region), col = colors, pch = 16, bty = "n")
+
+# Part (c): Table for Monthly Sales Data
+sales_data_wide <- reshape(sales_data, idvar = "Month", timevar = "Region", direction = "wide")
+print(sales_data_wide)
