@@ -1,0 +1,26 @@
+# Customer Purchases Data
+customer_purchases <- data.frame(
+  Customer = c("Customer A", "Customer B", "Customer A", "Customer C"),
+  Product = c("Widget X", "Widget Y", "Widget Z", "Widget X"),
+  Quantity = c(5, 3, 2, 4),
+  Price = c(10.00, 15.00, 8.50, 9.00)
+)
+
+# Part (a): Histogram for Quantity
+hist(customer_purchases$Quantity, col = "skyblue", main = "Distribution of Quantity",
+     xlab = "Quantity", ylab = "Frequency")
+
+# Part (b): Pie Chart for Distribution of Overall Quantity and Price
+quantity_sum <- sum(customer_purchases$Quantity)
+price_sum <- sum(customer_purchases$Price)
+
+pie(c(quantity_sum, price_sum), labels = c(paste("Quantity: ", quantity_sum),
+                                           paste("Price: $", price_sum)),
+    main = "Distribution of Overall Quantity and Price")
+
+# Part (d): Sentiment Analysis (Hypothetical Feedback Column)
+customer_purchases$Feedback <- c("Positive feedback", "Neutral feedback", "Positive feedback", "Negative feedback")
+
+# Print the feedback for illustration
+print("Feedback:")
+print(customer_purchases$Feedback)
