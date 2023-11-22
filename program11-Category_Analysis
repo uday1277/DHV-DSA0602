@@ -1,0 +1,24 @@
+# Assuming you have a data frame named 'product_sales' with columns 'Category' and 'Sales'
+product_sales <- data.frame(
+  Category = c("Electronics", "Clothing", "Appliances"),
+  Sales = c(50000, 35000, 40000)
+)
+
+# Plotting the pie chart
+pie(product_sales$Sales, labels = paste(product_sales$Category, " ($", product_sales$Sales, ")", sep = ""),
+    main = "Distribution of Sales Across Product Categories")
+# Assuming you have a data frame named 'sales_conversion' with columns 'Category' and 'Conversion Rate'
+sales_conversion <- data.frame(
+  Category = c("Electronics", "Clothing", "Appliances"),
+  ConversionRate = c(0.2, 0.15, 0.25)
+)
+
+# Plotting the funnel chart
+library(funnel)
+funnel(sales_conversion$ConversionRate, labels = sales_conversion$Category,
+       title = "Sales Conversion Process for Each Product Category")
+# Creating a data frame for the table
+sales_table <- product_sales[, c("Category", "Sales")]
+
+# Printing the table
+print(sales_table)
