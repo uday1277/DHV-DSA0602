@@ -1,0 +1,32 @@
+# Employee Sales Data
+employee_sales <- data.frame(
+  Employee = c("John", "Alice", "Bob", "Sarah"),
+  Sales = c(5000, 6200, 4500, 7400)
+)
+
+# Employee Sales Data
+employee_sales <- data.frame(
+  Employee = c("John", "Alice", "Bob", "Sarah"),
+  Sales = c(5000, 6200, 4500, 7400)
+)
+
+# Line chart for monthly sales
+plot(employee_sales$Sales, type = "l", col = "blue",
+     main = "Monthly Sales by Employee",
+     xlab = "Employee", ylab = "Sales (in dollars)",
+     axes = FALSE)
+
+axis(1, at = seq_along(employee_sales$Employee), labels = employee_sales$Employee)
+axis(2)
+
+# Adding points
+points(employee_sales$Sales, col = "red", pch = 16)
+
+
+# Bar chart for top-selling products
+barplot(employee_sales$Sales, names.arg = employee_sales$Employee,
+        col = "skyblue", main = "Top-Selling Products for the Year",
+        xlab = "Employee", ylab = "Sales (in dollars)")
+plot(advertising_data$Advertising_Budget, employee_sales$Sales, 
+     main = "Scatter Plot: Advertising Budget vs Monthly Sales",
+     xlab = "Advertising Budget", ylab = "Sales (in dollars)", col = "green", pch = 16)
