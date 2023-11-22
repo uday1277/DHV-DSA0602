@@ -1,0 +1,27 @@
+product_inventory <- data.frame(
+  ProductID = c(1, 2, 3, 4, 5),
+  ProductName = c("Product A", "Product B", "Product C", "Product D", "Product E"),
+  QuantityAvailable = c(250, 175, 300, 200, 220)
+)
+barplot(product_inventory$QuantityAvailable, names.arg = product_inventory$ProductName,
+        col = "lightblue", xlab = "Product Name", ylab = "Quantity Available",
+        main = "Quantity of Each Product in Inventory")
+product_categories <- data.frame(
+  ProductID = c(1, 2, 3, 4, 5),
+  ProductCategory = c("Category A", "Category B", "Category A", "Category C", "Category B")
+)
+merged_data <- merge(product_inventory, product_categories, by = "ProductID")
+barplot(as.matrix(table(merged_data$ProductCategory, merged_data$ProductName)),
+        col = c("lightblue", "lightgreen", "lightpink", "lightyellow", "lightcoral"),
+        legend = rownames(table(merged_data$ProductCategory, merged_data$ProductName)),
+        beside = TRUE,
+        xlab = "Product Category", ylab = "Quantity Available",
+        main = "Quantity of Each Product within Different Product Categories")
+product_pricing <- data.frame(
+  ProductID = c(1, 2, 3, 4, 5),
+  ProductPrice = c(50, 75, 60, 80, 65)
+)
+merged_data <- merge(product_inventory, product_pricing, by = "ProductID")
+plot(merged_data$ProductPrice, merged_data$QuantityAvailable,
+     xlab = "Product Price", ylab = "Quantity Available",
+     main = "Relationship between Product Price and Quantity Available")
