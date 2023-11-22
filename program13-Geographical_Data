@@ -1,0 +1,27 @@
+# Assuming you have a data frame named 'geographic_data' with columns 'City', 'Population', 'AvgTemperature', and 'Elevation'
+geographic_data <- data.frame(
+  City = c("City A", "City B", "City C"),
+  Population = c(500000, 700000, 600000),
+  AvgTemperature = c(75, 68, 80),
+  Elevation = c(1000, 800, 1200)
+)
+
+# Plotting the map chart
+library(ggplot2)
+library(ggrepel)
+
+ggplot(geographic_data, aes(x = Elevation, y = AvgTemperature, label = City)) +
+  geom_point() +
+  geom_text_repel() +
+  xlab("Elevation") +
+  ylab("Average Temperature") +
+  ggtitle("Geographic Distribution of Cities")
+# Plotting the scatter plot
+plot(geographic_data$AvgTemperature, geographic_data$Population,
+     xlab = "Average Temperature", ylab = "Population",
+     main = "Relationship between Average Temperature and Population Size")
+# Creating a data frame for the table
+geographic_table <- geographic_data[, c("City", "Population", "AvgTemperature", "Elevation")]
+
+# Printing the table
+print(geographic_table)
