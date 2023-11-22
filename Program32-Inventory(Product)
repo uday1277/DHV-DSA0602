@@ -1,0 +1,24 @@
+# Product Inventory Data
+product_inventory <- data.frame(
+  Product = c("Laptop A", "Phone B", "Chair C", "Book D"),
+  Category = c("Electronics", "Electronics", "Furniture", "Books"),
+  Quantity = c(50, 75, 120, 200),
+  Price = c(800.00, 500.00, 50.00, 10.00)
+)
+
+# Bar chart
+barplot(product_inventory$Quantity, names.arg = product_inventory$Product, col = "skyblue",
+        main = "Quantity of Each Product in Inventory",
+        xlab = "Product", ylab = "Quantity")
+# Stacked bar chart
+barplot(as.matrix(product_inventory$Quantity), beside = TRUE, col = rainbow(ncol(product_inventory)),
+        main = "Quantity of Each Product Within Different Categories",
+        xlab = "Product", ylab = "Quantity",
+        legend.text = product_inventory$Category)
+# Scatter plot
+plot(product_inventory$Price, product_inventory$Quantity, col = "blue",
+     main = "Scatter Plot: Product Price vs Quantity Available",
+     xlab = "Product Price (USD)", ylab = "Quantity Available")
+
+# Add labels for each point
+text(product_inventory$Price, product_inventory$Quantity, labels = product_inventory$Product, pos = 3)
