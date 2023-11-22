@@ -1,0 +1,21 @@
+# Data
+sales_data <- data.frame(
+  Month = c("January", "February", "March", "April", "May"),
+  Sales = c(15000, 18000, 22000, 20000, 23000),
+  Advertising_Budget = c(5000, 6000, 8000, 7000, 9000)
+)
+
+# Convert Month to a factor
+sales_data$Month <- factor(sales_data$Month, levels = unique(sales_data$Month))
+
+# Part a: Time Series Line Chart
+plot(sales_data$Month, sales_data$Sales, type = "l", col = "blue",
+     main = "Monthly Sales Trend", xlab = "Month", ylab = "Sales (in $)")
+
+# Part b: Scatter Plot for Advertising Budget vs. Monthly Sales
+plot(sales_data$Advertising_Budget, sales_data$Sales, col = "green",
+     main = "Advertising Budget vs. Monthly Sales",
+     xlab = "Advertising Budget", ylab = "Sales (in $)")
+
+# Part d: Autocorrelation Plot
+acf(sales_data$Sales, main = "Autocorrelation Plot for Monthly Sales")
