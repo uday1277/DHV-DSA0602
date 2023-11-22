@@ -1,0 +1,28 @@
+# Load required libraries
+library(ggplot2)
+library(knitr)
+
+# Data
+product_data <- data.frame(
+  Product_ID = c(1, 2, 3),
+  Product_Name = c("Product A", "Product B", "Product C"),
+  January_Sales = c(2000, 1500, 1200),
+  February_Sales = c(2200, 1800, 1400),
+  March_Sales = c(2400, 1600, 1100)
+)
+
+# Reshape data for ggplot
+library(tidyr)
+product_data_long <- gather(product_data, key = "Month", value = "Sales", -Product_ID, -Product_Name)
+
+# Create grouped bar chart
+ggplot(product_data_long, aes(x = Product_Name, y = Sales, fill = Month)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Product Sales for the First Quarter",
+       x = "Product Name",
+       y = "Sales",
+       fill = "Month") +
+  theme_minimal()
+
+# Print table
+kable(product_data, caption = "Monthly Sales Data for Each Product")
