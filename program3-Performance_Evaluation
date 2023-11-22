@@ -1,0 +1,25 @@
+# a. Line chart to visualize the performance trend of employees over time
+employee_data <- data.frame(
+  EmployeeID = c(1, 2, 3, 4, 5),
+  Department = c("Sales", "HR", "Marketing", "Sales", "HR"),
+  YearsOfService = c(5, 3, 7, 4, 2),
+  PerformanceScore = c(85, 92, 78, 90, 76)
+)
+
+# Plotting the line chart
+plot(employee_data$YearsOfService, employee_data$PerformanceScore, type = "o", col = employee_data$Department,
+     xlab = "Years of Service", ylab = "Performance Score",
+     main = "Performance Trend of Employees Over Time")
+legend("topright", legend = unique(employee_data$Department), col = unique(employee_data$Department), pch = 1)
+
+# b. Bar chart showing the distribution of employees across different departments
+# Plotting the bar chart
+barplot(table(employee_data$Department), col = "lightblue",
+        xlab = "Department", ylab = "Number of Employees",
+        main = "Distribution of Employees Across Departments")
+
+# c. Scatter plot to analyze the correlation between years of service and performance scores
+# Plotting the scatter plot
+plot(employee_data$YearsOfService, employee_data$PerformanceScore,
+     xlab = "Years of Service", ylab = "Performance Score",
+     main = "Correlation between Years of Service and Performance Scores")
