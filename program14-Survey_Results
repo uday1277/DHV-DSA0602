@@ -1,0 +1,38 @@
+# Assuming you have a data frame named 'survey_results' with columns 'Respondent', 'Question 1', 'Question 2', and 'Question 3'
+survey_results <- data.frame(
+  Respondent = c(1, 2, 3),
+  Question1 = c("A", "B", "C"),
+  Question2 = c("B", "A", "A"),
+  Question3 = c("C", "D", "B")
+)
+
+# Reshaping the data for plotting
+library(tidyr)
+survey_results_long <- gather(survey_results, Question, Answer, -Respondent)
+
+# Plotting the stacked bar chart
+library(ggplot2)
+ggplot(survey_results_long, aes(x = Respondent, fill = Answer)) +
+  geom_bar(position = "stack", stat = "count") +
+  xlab("Respondent") +
+  ylab("Count") +
+  ggtitle("Distribution of Answers for Question 1")
+# Installing and loading the 'fmsb' package for radar charts
+install.packages("fmsb")
+library(fmsb)
+
+# Creating a data frame for the radar chart
+radar_data <- data.frame(
+  Question1 = c(1, 2, 3),
+  Question2 = c(2, 1, 1),
+  Question3 = c(1, 1, 1)
+)
+
+# Plotting the radar chart
+radarchart(as.matrix(radar_data), title = "Overall Pattern of Responses",
+           vlcex = 0.8, vlcgrid = TRUE, cglcol = "grey")
+# Creating a data frame for the table
+response_table <- survey_results[, c("Respondent", "Question1", "Question2", "Question3")]
+
+# Printing the table
+print(response_table)
