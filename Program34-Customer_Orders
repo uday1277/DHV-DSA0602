@@ -1,0 +1,37 @@
+# Customer Orders Data
+customer_orders <- data.frame(
+  Order_ID = c(2001, 2002, 2003, 2004),
+  Customer_Name = c("John", "Alice", "Bob", "Sarah"),
+  Product = c("Widget X", "Widget Y", "Widget X", "Widget Z"),
+  Quantity = c(10, 5, 8, 12),
+  Price = c(5, 8, 5, 7)
+)
+
+# Histogram
+hist(customer_orders$Quantity, col = "skyblue", main = "Distribution of Quantity of Products",
+     xlab = "Quantity", ylab = "Frequency")
+# Pie chart
+overall_distribution <- c(sum(customer_orders$Quantity), sum(customer_orders$Price))
+labels <- c("Total Quantity", "Total Price")
+pie(overall_distribution, labels = paste(labels, ": ", overall_distribution),
+    main = "Distribution of Overall Quantity and Price")
+
+# Create a hypothetical "Feedback" column
+customer_orders$Feedback <- c("Positive feedback", "Neutral feedback", "Positive feedback", "Negative feedback")
+
+# Define a simple sentiment analysis function
+sentiment_analysis <- function(feedback) {
+  if (grepl("positive", tolower(feedback))) {
+    return("positive")
+  } else if (grepl("negative", tolower(feedback))) {
+    return("negative")
+  } else {
+    return("neutral")
+  }
+}
+
+# Apply sentiment analysis to the feedback column
+customer_orders$Sentiment <- sapply(customer_orders$Feedback, sentiment_analysis)
+
+# Display the resulting data
+print(customer_orders)
