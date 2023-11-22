@@ -1,0 +1,20 @@
+# Assuming you have a data frame named 'employee_data' with columns 'Employee ID', 'Name', 'Department', 'Years of Service', and 'Performance Score'
+employee_data <- data.frame(
+  EmployeeID = c(1, 2, 3, 4, 5),
+  Name = c("John Smith", "Jane Doe", "Robert Brown", "Sarah White", "Michael Lee"),
+  Department = c("Sales", "HR", "Marketing", "Sales", "HR"),
+  YearsOfService = c(5, 3, 7, 4, 2),
+  PerformanceScore = c(85, 92, 78, 90, 76)
+)
+
+# Plotting the histogram
+hist(employee_data$YearsOfService, col = "lightblue",
+     xlab = "Years of Service", ylab = "Frequency",
+     main = "Distribution of Years of Service")
+# Assuming you want to display the performance scores as percentages
+performance_counts <- table(employee_data$PerformanceScore)
+performance_percentages <- prop.table(performance_counts) * 100
+
+# Plotting the pie chart
+pie(performance_percentages, labels = paste(names(performance_percentages), " (", round(performance_percentages, 1), "%)", sep = ""),
+    main = "Distribution of Overall Performance Scores")
