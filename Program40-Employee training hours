@@ -1,0 +1,17 @@
+training_hours <- data.frame(
+  Employee = c("John", "Alice", "Bob", "Sarah"),
+  Department = c("HR", "Sales", "IT", "Finance"),
+  Training_Hours = c(10, 8, 12, 6)
+)
+
+# a. Histogram for Distribution of Training Hours
+hist(training_hours$Training_Hours, col = "skyblue", xlab = "Training Hours", main = "Distribution of Training Hours")
+
+# b. Pie Chart for Overall Employee Training Hours
+pie(training_hours$Training_Hours, labels = training_hours$Employee, main = "Overall Employee Training Hours")
+
+# c. Stacked Bar Chart for Distribution of Training Hours by Employee
+barplot(as.matrix(training_hours$Training_Hours), beside = TRUE, col = rainbow(nrow(training_hours)),
+        main = "Distribution of Training Hours by Employee",
+        xlab = "Employee", ylab = "Training Hours",
+        legend.text = training_hours$Department)
