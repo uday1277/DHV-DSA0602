@@ -1,0 +1,26 @@
+# Student Exam Scores Data
+exam_scores <- data.frame(
+  Student = c("Student A", "Student B", "Student C", "Student D"),
+  Math = c(85, 76, 92, 88),
+  Science = c(92, 88, 79, 95),
+  History = c(78, 89, 87, 82)
+)
+
+# Part (a): Bar chart for student marks
+barplot(t(as.matrix(exam_scores[, -1])), beside = TRUE, col = rainbow(nrow(exam_scores)),
+        main = "Exam Scores of Each Student",
+        xlab = "Subjects", ylab = "Marks", legend.text = exam_scores$Student)
+
+# Part (b): Stacked bar chart for subject status
+subject_status <- apply(exam_scores[, -1], 1, function(x) cut(x, breaks = c(0, 60, 80, 100), labels = c("Fail", "Pass", "Excellent")))
+barplot(t(as.matrix(table(subject_status))), beside = TRUE, col = c("red", "yellow", "green"),
+        main = "Subject Status of Each Student",
+        xlab = "Students", ylab = "Number of Students", legend.text = levels(subject_status))
+
+# Part (c): Scatter plot for math vs history
+plot(exam_scores$Math, exam_scores$History, col = "blue",
+     main = "Scatter Plot: Math vs History",
+     xlab = "Math Marks", ylab = "History Marks")
+
+# Add labels for each point
+text(exam_scores$Math, exam_scores$History, labels = exam_scores$Student, pos = 3)
