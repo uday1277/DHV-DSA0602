@@ -1,0 +1,33 @@
+# Assuming you have a data frame named 'product_inventory' with columns 'Product ID', 'Product Name', 'Quantity Available', and 'Price'
+product_inventory <- data.frame(
+  ProductID = c(1, 2, 3),
+  ProductName = c("Product A", "Product B", "Product C"),
+  QuantityAvailable = c(250, 175, 300),
+  Price = c(20, 15, 18)
+)
+
+# Plotting the bar chart
+barplot(product_inventory$QuantityAvailable, names.arg = product_inventory$ProductName,
+        col = "lightblue", xlab = "Product Name", ylab = "Quantity Available",
+        main = "Quantity of Each Product in Inventory")
+# Assuming you have a data frame named 'product_categories' with columns 'Product ID', 'Product Category'
+product_categories <- data.frame(
+  ProductID = c(1, 2, 3),
+  ProductCategory = c("Category A", "Category B", "Category A")
+)
+
+# Merging the two data frames based on 'Product ID'
+merged_data <- merge(product_inventory, product_categories, by = "ProductID")
+
+# Creating a stacked bar chart
+barplot(as.matrix(table(merged_data$ProductCategory, merged_data$ProductName)),
+        col = c("lightblue", "lightgreen", "lightpink"),
+        legend = rownames(table(merged_data$ProductCategory, merged_data$ProductName)),
+        beside = TRUE,
+        xlab = "Product Category", ylab = "Quantity Available",
+        main = "Quantity of Each Product within Different Product Categories")
+# Creating a data frame for the table
+inventory_table <- product_inventory[, c("ProductID", "ProductName", "QuantityAvailable", "Price")]
+
+# Printing the table
+print(inventory_table)
