@@ -1,0 +1,35 @@
+product_sales <- data.frame(
+  Store = c("Store A", "Store B", "Store A", "Store C"),
+  Product = c("Widget X", "Widget Y", "Widget Y", "Widget X"),
+  Quantity_Sold = c(100, 75, 50, 80),
+  Revenue = c(500.00, 1125.00, 750.00, 400.00)
+)
+
+# Load required libraries
+library(ggplot2)
+
+# Create a bar chart for quantity of each product
+ggplot(product_sales, aes(x = Product, y = Quantity_Sold, fill = Product)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Quantity of Each Product",
+       x = "Product",
+       y = "Quantity Sold") +
+  theme_minimal()
+# Assuming you have a 'Category' column in your data
+product_sales$Category <- c("Category A", "Category B", "Category B", "Category A")
+
+# Create a stacked bar chart for quantity of each product within different categories
+ggplot(product_sales, aes(x = Product, y = Quantity_Sold, fill = Category)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Quantity of Each Product within Different Categories",
+       x = "Product",
+       y = "Quantity Sold",
+       fill = "Category") +
+  theme_minimal()
+# Create a scatter plot for relationship between Revenue and Quantity Sold
+ggplot(product_sales, aes(x = Quantity_Sold, y = Revenue)) +
+  geom_point(color = "blue", size = 3) +
+  labs(title = "Relationship between Revenue and Quantity Sold",
+       x = "Quantity Sold",
+       y = "Revenue (USD)") +
+  theme_minimal()
