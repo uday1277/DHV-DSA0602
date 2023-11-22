@@ -1,0 +1,20 @@
+# Data
+employee_data <- data.frame(
+  Employee_ID = c(1, 2, 3, 4, 5),
+  Department = c("Sales", "HR", "Marketing", "Sales", "HR"),
+  Years_of_Service = c(5, 3, 7, 4, 2),
+  Performance_Score = c(85, 92, 78, 90, 76)
+)
+
+# Part a: Bar Chart for Department Distribution
+barplot(table(employee_data$Department), col = "skyblue",
+        main = "Distribution of Employees Across Different Departments",
+        xlab = "Department", ylab = "Number of Employees")
+
+# Part b: Line Chart for Performance Trend
+plot(employee_data$Years_of_Service, employee_data$Performance_Score, type = "o", col = "green",
+     main = "Performance Trend of Employees Over Time",
+     xlab = "Years of Service", ylab = "Performance Score")
+
+# Part d: Table for Performance Data
+print(employee_data)
