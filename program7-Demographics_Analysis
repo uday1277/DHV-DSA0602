@@ -1,0 +1,23 @@
+# Assuming you have a data frame named 'customer_demographics' with columns 'Customer ID', 'Age', 'Gender', and 'Income'
+customer_demographics <- data.frame(
+  CustomerID = c(1, 2, 3),
+  Age = c(28, 35, 42),
+  Gender = c("Female", "Male", "Female"),
+  Income = c(50000, 60000, 75000)
+)
+
+# Plotting the bar chart
+barplot(customer_demographics$Age, names.arg = customer_demographics$CustomerID,
+        col = "skyblue", xlab = "Customer ID", ylab = "Age",
+        main = "Distribution of Customer Ages")
+# Counting the frequencies of each gender
+gender_counts <- table(customer_demographics$Gender)
+
+# Plotting the pie chart
+pie(gender_counts, labels = paste(names(gender_counts), " (", gender_counts, ")", sep = ""),
+    main = "Distribution of Customers by Gender")
+# Creating a data frame for the table
+demographic_table <- customer_demographics[, c("CustomerID", "Age", "Gender", "Income")]
+
+# Printing the table
+print(demographic_table)
