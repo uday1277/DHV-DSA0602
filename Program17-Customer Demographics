@@ -1,0 +1,36 @@
+# Load required libraries
+library(ggplot2)
+library(knitr)
+
+# Data
+customer_data <- data.frame(
+  Customer_ID = c(1, 2, 3),
+  Age = c(28, 35, 42),
+  Gender = c("Female", "Male", "Female"),
+  Income = c(50000, 60000, 75000)
+)
+
+# a. Bar chart for customer ages
+ggplot(customer_data, aes(x = factor(Customer_ID), y = Age)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Distribution of Customer Ages",
+       x = "Customer ID",
+       y = "Age") +
+  theme_minimal()
+
+# b. Pie chart for the distribution of customers by gender
+ggplot(customer_data, aes(x = "", fill = Gender)) +
+  geom_bar(stat = "count", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Distribution of Customers by Gender",
+       fill = "Gender") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+# Load required libraries
+library(knitr)
+
+# Print table
+kable(customer_data, caption = "Demographic Information for Each Customer")
