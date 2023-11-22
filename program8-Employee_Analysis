@@ -1,0 +1,25 @@
+# Assuming you have a data frame named 'employee_performance' with columns 'Employee ID', 'Department', 'Years of Service', and 'Performance Score'
+employee_performance <- data.frame(
+  EmployeeID = c(1, 2, 3),
+  Department = c("Sales", "HR", "Marketing"),
+  YearsOfService = c(5, 3, 7),
+  PerformanceScore = c(85, 92, 78)
+)
+
+# Plotting the line chart
+plot(employee_performance$YearsOfService, employee_performance$PerformanceScore,
+     type = "o", col = "blue",
+     xlab = "Years of Service", ylab = "Performance Score",
+     main = "Performance Trend of Employees Over Time")
+# Counting the frequencies of each department
+department_counts <- table(employee_performance$Department)
+
+# Plotting the bar chart
+barplot(department_counts, col = "lightblue",
+        xlab = "Department", ylab = "Number of Employees",
+        main = "Distribution of Employees Across Departments")
+# Creating a data frame for the table
+performance_table <- employee_performance[, c("EmployeeID", "Department", "YearsOfService", "PerformanceScore")]
+
+# Printing the table
+print(performance_table)
