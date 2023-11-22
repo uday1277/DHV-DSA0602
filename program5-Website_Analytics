@@ -1,0 +1,34 @@
+# Assuming you have a data frame named 'website_analytics' with columns 'Date', 'Page Views', and 'Click-through Rate'
+website_analytics <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  PageViews = c(1500, 1600, 1400, 1650, 1800),
+  ClickThroughRate = c(2.3, 2.7, 2.0, 2.4, 2.6)
+)
+
+# Plotting the line chart
+plot(website_analytics$Date, website_analytics$PageViews, type = "l",
+     xlab = "Date", ylab = "Page Views", main = "Daily Page Views Over Time")
+# Assuming you want to display the top 2 days
+top_days <- website_analytics[order(website_analytics$ClickThroughRate, decreasing = TRUE), ][1:2, ]
+
+# Plotting the bar chart
+barplot(top_days$ClickThroughRate, names.arg = as.character(top_days$Date),
+        col = "lightblue", xlab = "Date", ylab = "Click-through Rate",
+        main = "Top Days with Highest Click-through Rates")
+# Assuming you have a data frame named 'user_interactions' with columns 'Date', 'Likes', 'Shares', 'Comments'
+user_interactions <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  Likes = c(100, 120, 90, 110, 130),
+  Shares = c(50, 60, 45, 55, 65),
+  Comments = c(30, 40, 25, 35, 45)
+)
+
+# Plotting the stacked area chart
+matplot(user_interactions$Date, t(user_interactions[, c("Likes", "Shares", "Comments")]),
+        type = "n", col = c("skyblue", "lightgreen", "lightcoral"),
+        xlab = "Date", ylab = "Number of Interactions",
+        main = "Distribution of User Interactions (Likes, Shares, Comments)")
+polygon(user_interactions$Date, user_interactions$Likes, col = "skyblue")
+polygon(user_interactions$Date, user_interactions$Shares, col = "lightgreen", add = TRUE)
+polygon(user_interactions$Date, user_interactions$Comments, col = "lightcoral", add = TRUE)
+legend("topright", legend = c("Likes", "Shares", "Comments"), fill = c("skyblue", "lightgreen", "lightcoral"))
