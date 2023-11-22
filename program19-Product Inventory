@@ -1,0 +1,32 @@
+# Load required libraries
+library(ggplot2)
+library(knitr)
+
+# Data
+inventory_data <- data.frame(
+  Product_ID = c(1, 2, 3),
+  Product_Name = c("Product A", "Product B", "Product C"),
+  Quantity_Available = c(250, 175, 300),
+  Price = c(20, 15, 18)
+)
+
+# a. Bar chart for the quantity of each product in the inventory
+ggplot(inventory_data, aes(x = Product_Name, y = Quantity_Available, fill = Product_Name)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Quantity of Each Product in the Inventory",
+       x = "Product Name",
+       y = "Quantity Available") +
+  theme_minimal()
+
+# b. Stacked bar chart to show quantity within different product categories
+ggplot(inventory_data, aes(x = 1, y = Quantity_Available, fill = Product_Name)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = "Quantity of Each Product within Different Categories",
+       x = "Product Category",
+       y = "Quantity Available") +
+  theme_minimal()
+
+# c. Table for inventory data for each product
+kable(inventory_data, caption = "Inventory Data for Each Product") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
