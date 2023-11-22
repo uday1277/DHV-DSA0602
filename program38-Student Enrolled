@@ -1,0 +1,39 @@
+# Simulated Data
+student_enrollment <- data.frame(
+  Student = c("Student A", "Student B", "Student C", "Student D"),
+  Grade_Level = c("9th", "10th", "11th", "9th"),
+  Enrollment_Date = as.Date(c("2023-08-15", "2023-09-02", "2023-07-20", "2023-08-30"))
+)
+
+# Load required libraries
+library(ggplot2)
+
+# a. Bar Chart for Average Grade Level
+student_enrollment$Grade_Level <- factor(student_enrollment$Grade_Level, levels = c("9th", "10th", "11th", "12th"))
+barplot(table(student_enrollment$Grade_Level) / nrow(student_enrollment),
+        main = "Average Grade Level of Students",
+        xlab = "Grade Level", ylab = "Proportion",
+        col = "skyblue", border = "black")
+
+# b. Stacked Bar Chart for Most Recent Enrollment Date
+# Sort data by Enrollment Date
+student_enrollment <- student_enrollment[order(student_enrollment$Enrollment_Date), ]
+
+barplot(
+  as.matrix(student_enrollment$Enrollment_Date),
+  beside = TRUE,
+  col = heat.colors(nrow(student_enrollment)),
+  main = "Most Recent Enrollment Date",
+  xlab = "Student",
+  ylab = "Enrollment Date",
+  names.arg = student_enrollment$Student,
+  legend.text = format(student_enrollment$Enrollment_Date, "%Y-%m-%d"),
+  args.legend = list(title = "Enrollment Date", cex = 0.8)
+)
+
+# c. Scatter Plot for Relationship between Grade Level and Enrollment Date
+# Create a scatter plot for relationship between grade level and enrollment date
+plot(student_enrollment$Grade_Level, student_enrollment$Enrollment_Date, 
+     main = "Relationship between Grade Level and Enrollment Date",
+     xlab = "Grade Level", ylab = "Enrollment Date",
+     col = "blue", pch = 16)
