@@ -1,0 +1,37 @@
+# Data
+sales_data <- data.frame(
+  Customer_ID = c(1, 2, 3, 4, 5),
+  Age = c(28, 35, 42, 30, 45),
+  Satisfaction_Score = c(4, 5, 3, 4, 5),
+  Feedback = c(
+    "Great service! Really enjoyed the experience.",
+    "The product exceeded my expectations.",
+    "Not satisfied with the delivery time.",
+    "The staff was helpful and friendly.",
+    "Excellent customer support!"
+  )
+)
+
+# Part a: Histogram for customer ages
+hist(sales_data$Age, col = "skyblue", main = "Distribution of Customer Ages",
+     xlab = "Age", ylab = "Frequency")
+
+# Part b: Pie chart for distribution of overall satisfaction scores
+satisfaction_counts <- table(sales_data$Satisfaction_Score)
+pie(satisfaction_counts, labels = paste(names(satisfaction_counts), ": ", satisfaction_counts),
+    main = "Distribution of Customer Satisfaction Scores")
+
+# Part d: Word Cloud (Basic Implementation)
+# Extract words from feedback
+words <- unlist(strsplit(tolower(gsub("[[:punct:]]", "", sales_data$Feedback)), " "))
+
+# Count word frequencies
+word_freq <- table(words)
+
+# Display word cloud
+cat("Word Cloud:\n")
+print(word_freq)
+
+# Plot bar chart of word frequencies
+barplot(word_freq, main = "Word Cloud for Customer Feedback",
+        xlab = "Word", ylab = "Frequency", col = "skyblue")
