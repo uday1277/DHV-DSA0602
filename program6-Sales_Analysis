@@ -1,0 +1,44 @@
+# Assuming you have a data frame named 'product_sales' with columns 'Product ID', 'Product Name', and monthly sales columns
+product_sales <- data.frame(
+  ProductID = c(1, 2, 3),
+  ProductName = c("Product A", "Product B", "Product C"),
+  JanuarySales = c(2000, 1500, 1200),
+  FebruarySales = c(2200, 1800, 1400),
+  MarchSales = c(2400, 1600, 1100)
+)
+
+# Plotting the grouped bar chart
+barplot(as.matrix(product_sales[, c("JanuarySales", "FebruarySales", "MarchSales")]),
+        beside = TRUE, col = c("skyblue", "lightgreen", "lightcoral"),
+        names.arg = product_sales$ProductName,
+        xlab = "Product", ylab = "Sales",
+        main = "Product Sales for the First Quarter")
+legend("topright", legend = colnames(product_sales[, c("JanuarySales", "FebruarySales", "MarchSales")]),
+       fill = c("skyblue", "lightgreen", "lightcoral"))
+# Assuming you have a data frame named 'overall_sales' with columns 'Month', 'Product A', 'Product B', 'Product C'
+overall_sales <- data.frame(
+  Month = c("January", "February", "March"),
+  ProductA = c(2000, 2200, 2400),
+  ProductB = c(1500, 1800, 1600),
+  ProductC = c(1200, 1400, 1100)
+)
+
+# Plotting the stacked area chart
+matplot(overall_sales$Month, t(overall_sales[, c("ProductA", "ProductB", "ProductC")]),
+        type = "n", col = c("skyblue", "lightgreen", "lightcoral"),
+        xlab = "Month", ylab = "Sales",
+        main = "Overall Sales Trend for All Products")
+polygon(overall_sales$Month, overall_sales$ProductA, col = "skyblue")
+polygon(overall_sales$Month, overall_sales$ProductB, col = "lightgreen", add = TRUE)
+polygon(overall_sales$Month, overall_sales$ProductC, col = "lightcoral", add = TRUE)
+legend("topright", legend = c("Product A", "Product B", "Product C"), fill = c("skyblue", "lightgreen", "lightcoral"))
+# Creating a data frame for table
+sales_table <- data.frame(
+  Product = product_sales$ProductName,
+  January = product_sales$JanuarySales,
+  February = product_sales$FebruarySales,
+  March = product_sales$MarchSales
+)
+
+# Printing the table
+print(sales_table)
